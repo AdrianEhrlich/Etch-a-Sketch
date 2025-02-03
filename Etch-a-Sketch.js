@@ -1,13 +1,21 @@
 const gridContainer = document.querySelector(".gridContainer");
 
 const createGrid = (rows, columns) => {
-    gridContainer.style.display = "grid";
-    gridContainer.style.gridTemplateRows = `repeat(${rows}, 1fr)`;
-    gridContainer.style.gridTemplateColumns = `repeat(${columns}, 1fr)`;
+
+    while (gridContainer.firstChild) {
+        gridContainer.removeChild(gridContainer.firstChild);
+    }
+
+    gridContainer.style.display = "flex";
+    gridContainer.style.flexWrap = "wrap"
 
     for (let i = 0; i < rows * columns; i++) {
         const cell = document.createElement("div");
         cell.classList.add("gridCell");
+
+        cell.style.flex = `0 0 calc(100% / ${columns})`;
+        cell.style.aspectRatio = "1";
+
         gridContainer.appendChild(cell);
     }
 }
