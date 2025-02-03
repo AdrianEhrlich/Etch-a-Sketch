@@ -1,3 +1,9 @@
+const randomColor = () => {
+    const r = Math.floor(Math.random() * 256);
+    const g = Math.floor(Math.random() * 256);
+    const b = Math.floor(Math.random() * 256);
+    return `rgb(${r}, ${g}, ${b})`;
+}
 const gridContainer = document.querySelector(".gridContainer");
 
 const createGrid = (rows, columns) => {
@@ -17,7 +23,7 @@ const createGrid = (rows, columns) => {
         cell.style.aspectRatio = "1";
 
         cell.addEventListener("mouseenter", () =>{
-            cell.style.backgroundColor = "lightBlue";
+            cell.style.backgroundColor = randomColor();
         });
         
         cell.addEventListener("mouseleave", () => {
