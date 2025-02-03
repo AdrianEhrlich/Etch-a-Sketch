@@ -2,6 +2,10 @@ const gridContainer = document.querySelector(".gridContainer");
 
 const createGrid = (rows, columns) => {
 
+    while (gridContainer.firstChild) {
+        gridContainer.removeChild(gridContainer.firstChild);
+    }
+
     gridContainer.style.display = "flex";
     gridContainer.style.flexWrap = "wrap"
 
@@ -26,3 +30,21 @@ const createGrid = (rows, columns) => {
 }
 
 createGrid(16, 16);
+
+const resetBttn = document.querySelector(".resetBttn")
+
+resetBttn.addEventListener("click", () => {
+    
+    let gridSize = parseInt(prompt(
+        "Enter the number of squares per side for a new grid (e.g. 16, 32, etc."))
+
+    if (isNaN(gridSize) || gridSize <= 0) {
+        alert("Please enter a positive number.");
+    } else if (gridSize > 100) {
+        alert("Please enter a number equal or smaller than 100.")
+    } else {
+        createGrid(gridSize, gridSize);
+    }
+    
+    
+})
